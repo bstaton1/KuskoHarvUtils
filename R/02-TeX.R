@@ -10,6 +10,8 @@
 #'
 #' @param x Character; the output of [report()]
 #' @param linebreak Logical; should a linebreak be inserted between the mean portion and the CI portion?
+#' @export
+
 
 tinyCI = function(x, linebreak = TRUE) {
   # if x has CIs
@@ -37,10 +39,10 @@ tinyCI = function(x, linebreak = TRUE) {
 #' A function to add vspace to the bottom of a kable
 #'
 #' @param kable_input Output of a `knitr::kable() %>% kableExtra::fn()` chain.
-#' @param space Character; LaTex units and magnitude of space to include in a vspace
+#' @param space Character; LaTeX units and magnitude of space to include in a vspace
 #'   call at the bottom of the table
 #' @details This function should be called as the last step in the chain of commands.
-#'
+#' @export
 
 add_vspace = function(kable_input, space = "-1em") {
   kable_input_new = paste(c(as.character(kable_input), "\n\\vspace{", space, "}"), collapse = "")

@@ -9,7 +9,7 @@
 #' @param digits Numeric; supplied to [base::round()]. Defaults to `0`.
 #'
 #' @return Character vector storing percentage values. If a non-zero value would be rounded to zero, `"<1%"` is returned instead.
-#'
+#' @export
 
 percentize = function(x, escape = FALSE, digits = 0) {
   # create the percent version
@@ -29,6 +29,7 @@ percentize = function(x, escape = FALSE, digits = 0) {
 #'
 #' @param x Character; a vector of character strings for which the
 #'   first character should be converted to uppercase
+#' @export
 
 capitalize = function (x) {
   if (!is.character(x)) stop("x must be of class 'character'")
@@ -44,6 +45,7 @@ capitalize = function (x) {
 #' @param x Numeric; vector to be rounded
 #' @param digits Numeric; number of decimal points to round to
 #' @references The source code for this function was copied from [this Stack Overflow answer](https://stackoverflow.com/a/35930285/3911200)
+#' @export
 
 smart_round = function(x, digits = 0) {
   # copied from https://stackoverflow.com/a/35930285/3911200
@@ -69,6 +71,7 @@ smart_round = function(x, digits = 0) {
 #' @return A numeric value representing the vector of northerly wind speed.
 #'   Positive values correspond to northerly winds, negative values to southerly winds.
 #'   The absolute magnitude of the number corresponds to the speed in the north or south direction.
+#' @export
 
 get_Nwind = function(speed, angle, digits = 1) {
   round(speed * cos(pi * angle/180), digits = digits)
@@ -88,6 +91,7 @@ get_Nwind = function(speed, angle, digits = 1) {
 #' @return A numeric value representing the vector of easterly wind speed.
 #'   Positive values correspond to easterly winds, negative values to westerly winds.
 #'   The absolute magnitude of the number corresponds to the speed in the east or west direction.
+#' @export
 
 get_Ewind = function(speed, angle, digits = 1) {
   round(speed * sin(pi * angle/180), digits = digits)
@@ -105,6 +109,7 @@ get_Ewind = function(speed, angle, digits = 1) {
 #'   * `2`: June 20 - June 30; remainder of June.
 #'   * `3`: July 1 - July 30; any date in July.
 #'   * `NA`: if the date does not fall in any of these periods.
+#' @export
 
 get_period = function(x) {
 

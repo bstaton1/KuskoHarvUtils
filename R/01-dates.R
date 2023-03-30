@@ -10,7 +10,7 @@
 #'   Defaults to `"US/Alaska"`.
 #'
 #' @return A vector with of class `datetime`.
-#'
+#' @export
 
 combine_datetime = function(dates, times, tz = "US/Alaska") {
   # step 1: combine dates and times and into standardized format
@@ -31,7 +31,7 @@ combine_datetime = function(dates, times, tz = "US/Alaska") {
 #' @param datetimes Object of class `datetime`
 #' @param include_dates Logical; if `TRUE` `(M/D)` will be appended to the back of the output.
 #'   If `FALSE`, only the time (12-hour clock) will be returned.
-#'
+#' @export
 
 short_datetime = function(datetimes, include_date = FALSE) {
 
@@ -63,7 +63,7 @@ short_datetime = function(datetimes, include_date = FALSE) {
 #'   is useful in constructing file names.
 #'
 #' @param x and object of class `datetime`
-#'
+#' @export
 
 file_date = function(x) {
   day = stringr::str_pad(lubridate::day(x), width = 2, side = "left", pad = "0")
@@ -78,7 +78,7 @@ file_date = function(x) {
 #'   class that is easier to read for humans.
 #'
 #' @param datetime Object of class `datetime`
-#'
+#' @export
 
 basic_date = function(datetime) {
   day = lubridate::day(datetime)
@@ -93,6 +93,7 @@ basic_date = function(datetime) {
 #' past May 31 of that year
 #'
 #' @param dates Datetime; can be of length > 1
+#' @export
 
 to_days_past_may31 = function(dates) {
   ref_date = lubridate::as_datetime(paste0(lubridate::year(dates), "-05-31"))
@@ -106,6 +107,7 @@ to_days_past_may31 = function(dates) {
 #'
 #' @param day Numeric; number of days past May 31 to convert to a `datetime` object. Can be of length > 1
 #' @param year Numeric or character; the year of the output `datetime` object. Can be of length > 1, but if so, should be the same length as `day`
+#' @export
 
 from_days_past_may31 = function(days, year = "1900") {
   ref_date = lubridate::as_date(paste0(as.character(year), "-05-31"))
