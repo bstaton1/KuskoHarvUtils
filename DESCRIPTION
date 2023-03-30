@@ -19,3 +19,5 @@ Depends:
 Imports:
     lubridate,
     stringr (>= 1.3.1)
+RoxygenNote: 7.2.3
+Roxygen: list(markdown = TRUE)
