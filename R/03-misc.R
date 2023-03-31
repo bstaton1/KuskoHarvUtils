@@ -118,7 +118,7 @@ get_period = function(x) {
     day = x
   } else {
     if (class(x) == "Date") {
-      day = KuskoHarvData:::to_days_past_may31(x)
+      day = to_days_past_may31(x)
     } else {
       stop ("x must be a numeric or Date object")
     }
