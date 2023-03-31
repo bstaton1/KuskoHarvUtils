@@ -68,9 +68,12 @@ smart_round = function(x, digits = 0) {
 #'   * `angle = 0`: exactly northerly wind (i.e., from north to south, blowing in your face standing north)
 #'   * `angle = 45`: exactly northeasterly wind
 #'   * `angle = 180`: exactly southerly wind
+#' @note The calculation performed is:
+#'   \deqn{\text{speed} \cdot \text{cos}(\pi\cdot\frac{\text{angle}}{180})}
 #' @return A numeric value representing the vector of northerly wind speed.
 #'   Positive values correspond to northerly winds, negative values to southerly winds.
 #'   The absolute magnitude of the number corresponds to the speed in the north or south direction.
+#' @source G. Decossas provided this formula based on some previous work.
 #' @export
 
 get_Nwind = function(speed, angle, digits = 1) {
@@ -88,9 +91,12 @@ get_Nwind = function(speed, angle, digits = 1) {
 #'   * `angle = 0`: exactly northerly wind (i.e., from north to south, blowing in your face standing north)
 #'   * `angle = 45`: exactly northeasterly wind
 #'   * `angle = 180`: exactly southerly wind
+#' @note The exact calculation performed is:
+#'   \deqn{\text{speed} \cdot \text{sin}(\pi\cdot\frac{\text{angle}}{180})}
 #' @return A numeric value representing the vector of easterly wind speed.
 #'   Positive values correspond to easterly winds, negative values to westerly winds.
 #'   The absolute magnitude of the number corresponds to the speed in the east or west direction.
+#' @source G. Decossas provided this formula based on some previous work.
 #' @export
 
 get_Ewind = function(speed, angle, digits = 1) {

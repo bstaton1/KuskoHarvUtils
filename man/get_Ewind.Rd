@@ -3,6 +3,9 @@
 \name{get_Ewind}
 \alias{get_Ewind}
 \title{Obtain Easterly Wind Speed Vector}
+\source{
+G. Decossas provided this formula based on some previous work.
+}
 \usage{
 get_Ewind(speed, angle, digits = 1)
 }
@@ -28,4 +31,8 @@ The \code{angle} represents degrees from exactly northerly wind:
 \item \code{angle = 45}: exactly northeasterly wind
 \item \code{angle = 180}: exactly southerly wind
 }
+}
+\note{
+The exact calculation performed is:
+\deqn{\text{speed} \cdot \text{sin}(\pi\cdot\frac{\text{angle}}{180})}
 }

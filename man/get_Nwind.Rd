@@ -3,6 +3,9 @@
 \name{get_Nwind}
 \alias{get_Nwind}
 \title{Obtain Northerly Wind Speed Vector}
+\source{
+G. Decossas provided this formula based on some previous work.
+}
 \usage{
 get_Nwind(speed, angle, digits = 1)
 }
@@ -28,4 +31,8 @@ The \code{angle} represents degrees from exactly northerly wind:
 \item \code{angle = 45}: exactly northeasterly wind
 \item \code{angle = 180}: exactly southerly wind
 }
+}
+\note{
+The calculation performed is:
+\deqn{\text{speed} \cdot \text{cos}(\pi\cdot\frac{\text{angle}}{180})}
 }
