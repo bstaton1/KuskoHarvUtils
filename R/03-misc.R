@@ -28,11 +28,12 @@ percentize = function(x, escape = FALSE, digits = 0) {
 #'   element of a character vector
 #'
 #' @param x Character; a vector of character strings for which the
-#'   first character should be converted to uppercase
+#'   first character should be converted to uppercase. If not
+#'   a character, will be coerced to one.
 #' @export
 
 capitalize = function (x) {
-  if (!is.character(x)) stop("x must be of class 'character'")
+  x = as.character(x)
   first = substr(x, 1, 1)
   last = substr(x, 2, nchar(x))
   paste0(toupper(first), last)
