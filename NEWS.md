@@ -1,5 +1,10 @@
 # *NEWS*
 
+# KuskoHarvUtils 0.1.1 (2023-07-08)
+
+Created the `kable_replace()` utility function, which is now used by `KuskoHarvUtils::add_vspace()` and makes permanent what was previously a temporary fix in `KuskoHarvEst:::make_harvest_sensitivity_table()`.
+This function solves a general problem, and I thought that it belonged here rather than buried in a non-exported table-generating function ([#4](https://github.com/bstaton1/KuskoHarvUtils/issues/4)).
+
 # KuskoHarvUtils 0.1.0 (2023-01-31)
 
 This package was initialized by moving source code for a variety of utility from three other packages: 'KuskoHarvEst', 'KuskoHarvData', and 'KuskoHarvPred'.
