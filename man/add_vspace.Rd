@@ -7,7 +7,7 @@
 add_vspace(kable_input, space = "-1em")
 }
 \arguments{
-\item{kable_input}{Output of a \code{knitr::kable() \%>\% kableExtra::fn()} chain.}
+\item{kable_input}{The output of a Output of a \code{knitr::kable() |> kableExtra::fn()} chain.}
 
 \item{space}{Character; LaTeX units and magnitude of space to include in a vspace
 call at the bottom of the table}
