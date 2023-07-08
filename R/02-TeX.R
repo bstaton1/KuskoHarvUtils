@@ -36,6 +36,23 @@ tinyCI = function(x, linebreak = TRUE) {
   }
 }
 
+#' Replace Text in a kable Object
+#'
+#' Sometimes something needs to be altered
+#' in the TeX code after the kable object is built.
+#'
+#' @param kable_input The output of a Output of a `knitr::kable() |> kableExtra::fn()` chain.
+#' @param pattern Pattern to look for -- interpreted as a regular expression. See [stringr::str_replace()].
+#' @param replacement Replacement value.
+#' @export
+
+kable_replace = function(kable_input, pattern, replacement) {
+  kable_input_new = stringr::str_replace(as.character(kable_input), pattern = pattern, replacement = replacement)
+  class(kable_input_new) = class(kable_input)
+  attributes(kable_input_new) = attributes(kable_input)
+  return(kable_input_new)
+}
+
 #' A function to add vspace to the bottom of a kable
 #'
 #' @param kable_input Output of a `knitr::kable() %>% kableExtra::fn()` chain.
