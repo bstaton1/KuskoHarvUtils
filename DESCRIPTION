@@ -1,7 +1,7 @@
 Package: KuskoHarvUtils
 Type: Package
 Title: Helper Functions to Support 'KuskoHarv' Family of Packages
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person(given = "Ben",
            family = "Staton",
@@ -15,7 +15,7 @@ License: use_mit_license()
 Encoding: UTF-8
 LazyData: true
 Depends: 
-    R (>= 3.5)
+    R (>= 4.1.0)
 Imports:
     lubridate,
     stringr (>= 1.3.1)

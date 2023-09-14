@@ -36,17 +36,35 @@ tinyCI = function(x, linebreak = TRUE) {
   }
 }
 
+#' Replace Text in a kable Object
+#'
+#' Sometimes something needs to be altered
+#' in the TeX code after the kable object is built.
+#'
+#' @param kable_input The output of a Output of a `knitr::kable() |> kableExtra::fn()` chain.
+#' @param pattern Pattern to look for -- interpreted as a regular expression. See [stringr::str_replace()].
+#' @param replacement Replacement value.
+#' @export
+
+kable_replace = function(kable_input, pattern, replacement) {
+  kable_input_new = stringr::str_replace(as.character(kable_input), pattern = pattern, replacement = replacement)
+  class(kable_input_new) = class(kable_input)
+  attributes(kable_input_new) = attributes(kable_input)
+  return(kable_input_new)
+}
+
 #' A function to add vspace to the bottom of a kable
 #'
-#' @param kable_input Output of a `knitr::kable() %>% kableExtra::fn()` chain.
+#' @inheritParams kable_replace
 #' @param space Character; LaTeX units and magnitude of space to include in a vspace
 #'   call at the bottom of the table
 #' @details This function should be called as the last step in the chain of commands.
 #' @export
 
 add_vspace = function(kable_input, space = "-1em") {
-  kable_input_new = paste(c(as.character(kable_input), "\n\\vspace{", space, "}"), collapse = "")
-  class(kable_input_new) = class(kable_input)
-  attributes(kable_input_new) = attributes(kable_input)
-  return(kable_input_new)
+  kable_replace(
+    kable_input = kable_input,
+    pattern = "end\\{tabular\\}",
+    replacement = stringr::str_replace("end\\{tabular\\}\\\n\\\\vspace{SPACE}", "SPACE", space)
+  )
 }
