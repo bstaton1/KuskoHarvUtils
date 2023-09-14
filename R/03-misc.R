@@ -50,12 +50,17 @@ capitalize = function (x) {
 
 smart_round = function(x, digits = 0) {
   # copied from https://stackoverflow.com/a/35930285/3911200
-  up = 10 ^ digits
-  x = x * up
-  y = floor(x)
-  indices = tail(order(x-y), round(sum(x)) - sum(y))
-  y[indices] = y[indices] + 1
-  y/up
+  if (all(is.na(x))) {
+    out = x
+  } else {
+    up = 10 ^ digits
+    x = x * up
+    y = floor(x)
+    indices = tail(order(x-y), round(sum(x)) - sum(y))
+    y[indices] = y[indices] + 1
+    out = y/up
+  }
+  return(out)
 }
 
 #' Obtain Northerly Wind Speed Vector
