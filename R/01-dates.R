@@ -95,9 +95,11 @@ basic_date = function(datetime) {
 #' @param dates Datetime; can be of length > 1
 #' @export
 
+dates = lubridate::as_date(c("2023-07-28", "2023-07-29", "2023-07-30", "2023-07-31"))
+
 to_days_past_may31 = function(dates) {
-  ref_date = lubridate::as_datetime(paste0(lubridate::year(dates), "-05-31"))
-  floor(as.numeric(lubridate::as.period(lubridate::interval(ref_date, dates)), units = "day"))
+  ref_date = lubridate::as_date(paste0(lubridate::year(dates), "-05-31"))
+  as.numeric(dates - ref_date, "days")
 }
 
 #' Convert 'days past May 31' to a date

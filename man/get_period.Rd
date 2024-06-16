@@ -15,7 +15,7 @@ The period number corresponding to the input date(s) supplied to \code{x}:
 \itemize{
 \item \code{1}: June 12 - June 19; first week of drift fishing allowed.
 \item \code{2}: June 20 - June 30; remainder of June.
-\item \code{3}: July 1 - July 30; any date in July.
+\item \code{3}: July 1 - July 31; any date in July.
 \item \code{NA}: if the date does not fall in any of these periods.
 }
 }

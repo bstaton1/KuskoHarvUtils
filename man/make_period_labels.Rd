@@ -4,12 +4,10 @@
 \alias{make_period_labels}
 \title{Make Period Labels}
 \usage{
-make_period_labels(
-  last_day = KuskoHarvUtils::to_days_past_may31(lubridate::as_date("2023-07-31"))
-)
+make_period_labels(last_day = 61)
 }
 \arguments{
-\item{last_day}{Numeric; last day to use as the end of the July period. Must be >= 31}
+\item{last_day}{Numeric; last day to use as the end of the July period. Must be >= 31; defaults to 61 (July 31)}
 }
 \value{
 Character vector with the date ranges for each period, as defined by \code{\link[=get_period]{get_period()}}

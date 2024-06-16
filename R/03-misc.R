@@ -119,7 +119,7 @@ get_Ewind = function(speed, angle, digits = 1) {
 #' @return The period number corresponding to the input date(s) supplied to `x`:
 #'   * `1`: June 12 - June 19; first week of drift fishing allowed.
 #'   * `2`: June 20 - June 30; remainder of June.
-#'   * `3`: July 1 - July 30; any date in July.
+#'   * `3`: July 1 - July 31; any date in July.
 #'   * `NA`: if the date does not fall in any of these periods.
 #' @export
 
@@ -139,7 +139,7 @@ get_period = function(x) {
   # build the days in each period
   d1 = 12:19  # first week of drift fishing
   d2 = 20:30  # remainder of June
-  d3 = 31:60  # any date in July
+  d3 = 31:61  # any date in July
 
   # build the period indicators
   p1 = rep(1, length(d1)); names(p1) = d1
@@ -267,11 +267,11 @@ get_var_name = function(var, escape = FALSE, is_title = TRUE, long_species_comp 
 #'
 #' Quickly obtains range of dates included in each period.
 #'
-#' @param last_day Numeric; last day to use as the end of the July period. Must be >= 31
+#' @param last_day Numeric; last day to use as the end of the July period. Must be >= 31; defaults to 61 (July 31)
 #' @return Character vector with the date ranges for each period, as defined by [KuskoHarvUtils::get_period()]
 #' @export
 
-make_period_labels = function(last_day = KuskoHarvUtils::to_days_past_may31(lubridate::as_date("2023-07-31"))) {
+make_period_labels = function(last_day = 61) {
 
   # error handles
   if (length(last_day) != 1) stop ("last_day must be a single number >= 31")
