@@ -196,3 +196,106 @@ get_errors = function(yhat, yobs) {
     )
   )
 }
+
+#' Obtain the 'Pretty Name' of a Variable
+#'
+#' For printing axis labels, etc.
+#'
+#' @param var The variable name. Returns `NA` if not a valid variable.
+#' @param escape Should percent symbols be escaped and `"^2"` converted to `"\\textsuperscript{2}"`? Defaults to `FALSE`.
+#' @param is_title Should title case be used? Defaults to `TRUE`.
+#'     Either way, proper capitalization of "Chinook" and "BTF" will always be respected.
+#' @param long_species_comp Should "Percent Salmon Species Composition" be used in place of "% Spp"?
+#' @export
+
+get_var_name = function(var, escape = FALSE, is_title = TRUE, long_species_comp = FALSE) {
+
+  # set a nice name for the standard variables
+  var_name = switch(var,
+                    "effort" = "Trips/Day",
+                    "total_cpt" = "Catch/Trip",
+                    "chinook_comp" = "% Chinook",
+                    "chum_comp" = "% Chum",
+                    "sockeye_comp" = "% Sockeye",
+                    "day" = "Day",
+                    "I(day^2)" = "Day^2",
+                    "hours_open" = "Hours Open",
+                    "fished_yesterday" = "Fished Yesterday",
+                    "fished_yesterdayTRUE" = "Fished Yesterday",
+                    "fished_yesterdayFALSE" = "Did Not Fish Yesterday",
+                    "weekend" = "Weekend",
+                    "weekendTRUE" = "Weekend",
+                    "weekendFALSE" = "Not Weekend",
+                    "p_before_noon" = "% Before Noon",
+                    "total_btf_cpue" = "BTF CPUE",
+                    "chinook_btf_comp" = "BTF % Chinook",
+                    "I(chinook_btf_comp^2)" = "BTF % Chinook^2",
+                    "chum_btf_comp" = "BTF % Chum",
+                    "I(chum_btf_comp^2)" = "BTF % Chum^2",
+                    "sockeye_btf_comp" = "BTF % Sockeye",
+                    "I(sockeye_btf_comp^2)" = "BTF % Sockeye^2",
+                    "chinook_harv" = "Chinook Harvest",
+                    "chum_harv" = "Chum Harvest",
+                    "sockeye_harv" = "Sockeye Harvest",
+                    NA
+  )
+
+  # add long text about species comp if instructed
+  if (long_species_comp & stringr::str_detect(var, "comp")) {
+    var_name = paste0(var_name, " Salmon Species Composition") |>
+      stringr::str_replace("\\%", "Percent")
+  }
+
+  # escape latex symbols if requested
+  if (escape) {
+    var_name = var_name |>
+      stringr::str_replace("\\%", "\\\\%") |>
+      stringr::str_replace("\\^2", "\\\\textsuperscript{2}")
+  }
+
+  # convert to title case if requested
+  if (!is_title) {
+    var_name = tolower(var_name) |>
+      stringr::str_replace("chinook", "Chinook") |>
+      stringr::str_replace("btf", "BTF")
+  }
+
+  return(var_name)
+}
+
+#' Make Period Labels
+#'
+#' Quickly obtains range of dates included in each period.
+#'
+#' @param last_day Numeric; last day to use as the end of the July period. Must be >= 31
+#' @return Character vector with the date ranges for each period, as defined by [KuskoHarvUtils::get_period()]
+#' @export
+
+make_period_labels = function(last_day = KuskoHarvUtils::to_days_past_may31(lubridate::as_date("2023-07-31"))) {
+
+  # error handles
+  if (length(last_day) != 1) stop ("last_day must be a single number >= 31")
+  if (last_day < 31) stop ("last_day must be >= 31")
+
+  # create the vector of days to place into periods
+  d = 12:last_day
+
+  # place each day into a period
+  p = KuskoHarvUtils:::get_period(d)
+
+  # get the date of each day
+  dt = KuskoHarvUtils::from_days_past_may31(d, year = 2023)
+
+  # make a nice month/day label
+  dy = lubridate::day(dt); mn = lubridate::month(dt)
+  dt2 = paste0(mn, "/", dy)
+
+  # extract those at the start and end of each period, and combine with a -
+  labels = sapply(sort(unique(p)), function(i) paste(dt2[range(which(p == i))], collapse = "-"))
+
+  # assign the labels names corresponding to the period code
+  names(labels) = sort(unique(p))
+
+  # return the output
+  return(labels)
+}
