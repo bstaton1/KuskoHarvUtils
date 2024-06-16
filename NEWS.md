@@ -1,5 +1,11 @@
 # *NEWS*
 
+# KuskoHarvUtils 0.1.2 (2024-06-16)
+
+* Created the `get_var_names()` function, which previously was in 'KuskoHarvPred', but belongs here more
+* Created the `make_period_labels()` function, which previously was in the 'KuskoHarvPred-ms' project, but belongs here more as well.
+* These changes are documented in [#7](https://github.com/bstaton1/KuskoHarvUtils/issues/7)
+
 # KuskoHarvUtils 0.1.1 (2023-07-08)
 
 * Created the `kable_replace()` utility function, which is now used by `KuskoHarvUtils::add_vspace()` and makes permanent what was previously a temporary fix in `KuskoHarvEst:::make_harvest_sensitivity_table()`.
