@@ -158,18 +158,20 @@ get_period = function(x) {
 #'
 #' @param yhat Numeric vector of predicted values.
 #' @param yobs Numeric vector of observed values.
+#' @param FUN Function used to summarize the central tendency of errors;
+#'   defaults to [stats::median()] to minimize influence of rare large errors but [base::mean()] is another good option.
 #' @note If `yhat` and `yobs` are of unequal lengths, the function will fail with a useful error message.
 #' @return A [`list`][base::list] object with elements `$error` (`yhat - yobs`), `$p_error` (`(yhat - yobs)/yobs`), and `$summary`.
 #'   `$summary` is a named vector with elements:
 #'   * `RHO` -- Pearson correlation coefficient between `yhat` and `yobs`.
-#'   * `RMSE` -- Root mean squared error: `sqrt(mean(error^2))`.
-#'   * `ME` -- Mean error: `mean(error)`.
-#'   * `MAE` -- Mean absolute error: `mean(abs(error))`.
-#'   * `MPE` -- Mean proportional error: `mean(p_error)`.
-#'   * `MAPE` -- Mean absolution proportional error: `mean(abs(p_error))`.
+#'   * `RMSE` -- Root `FUN` squared error: `sqrt(FUN(error^2))`.
+#'   * `ME` -- `FUN` error: `FUN(error)`.
+#'   * `MAE` -- `FUN` absolute error: `FUN(abs(error))`.
+#'   * `MPE` -- `FUN` proportional error: `FUN(p_error)`.
+#'   * `MAPE` -- `FUN` absolution proportional error: `FUN(abs(p_error))`.
 #' @export
 
-get_errors = function(yhat, yobs) {
+get_errors = function(yhat, yobs, FUN = median) {
 
   # return an error if the two input vectors are unequal lengths
   if (length(yhat) != length(yobs)) {
@@ -188,11 +190,11 @@ get_errors = function(yhat, yobs) {
     p_error = p_error,
     summary = c(
       RHO = cor(yhat, yobs),
-      RMSE = sqrt(mean(error^2)),
-      ME = mean(error),
-      MAE = mean(abs(error)),
-      MPE = mean(p_error),
-      MAPE = mean(abs(p_error))
+      RMSE = sqrt(FUN(error^2)),
+      ME = FUN(error),
+      MAE = FUN(abs(error)),
+      MPE = FUN(p_error),
+      MAPE = FUN(abs(p_error))
     )
   )
 }

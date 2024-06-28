@@ -4,23 +4,26 @@
 \alias{get_errors}
 \title{Obtain Prediction Errors and Summaries}
 \usage{
-get_errors(yhat, yobs)
+get_errors(yhat, yobs, FUN = median)
 }
 \arguments{
 \item{yhat}{Numeric vector of predicted values.}
 
 \item{yobs}{Numeric vector of observed values.}
+
+\item{FUN}{Function used to summarize the central tendency of errors;
+defaults to \code{\link[stats:median]{stats::median()}} to minimize influence of rare large errors but \code{\link[base:mean]{base::mean()}} is another good option.}
 }
 \value{
 A \code{\link[base:list]{list}} object with elements \verb{$error} (\code{yhat - yobs}), \verb{$p_error} (\code{(yhat - yobs)/yobs}), and \verb{$summary}.
 \verb{$summary} is a named vector with elements:
 \itemize{
 \item \code{RHO} -- Pearson correlation coefficient between \code{yhat} and \code{yobs}.
-\item \code{RMSE} -- Root mean squared error: \code{sqrt(mean(error^2))}.
-\item \code{ME} -- Mean error: \code{mean(error)}.
-\item \code{MAE} -- Mean absolute error: \code{mean(abs(error))}.
-\item \code{MPE} -- Mean proportional error: \code{mean(p_error)}.
-\item \code{MAPE} -- Mean absolution proportional error: \code{mean(abs(p_error))}.
+\item \code{RMSE} -- Root \code{FUN} squared error: \code{sqrt(FUN(error^2))}.
+\item \code{ME} -- \code{FUN} error: \code{FUN(error)}.
+\item \code{MAE} -- \code{FUN} absolute error: \code{FUN(abs(error))}.
+\item \code{MPE} -- \code{FUN} proportional error: \code{FUN(p_error)}.
+\item \code{MAPE} -- \code{FUN} absolution proportional error: \code{FUN(abs(p_error))}.
 }
 }
 \description{
