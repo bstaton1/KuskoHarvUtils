@@ -1,5 +1,9 @@
 # *NEWS*
 
+# KuskoHarvUtils 0.1.3 (2024-06-26)
+
+* Added a `FUN` argument to `get_errors()`, which is used to set the function used to calculate error summaries; previously this was hard-coded to be `mean()` in the function body. Now the default is `median(error)`.
+
 # KuskoHarvUtils 0.1.2 (2024-06-16)
 
 * Created the `get_var_names()` function, which previously was in 'KuskoHarvPred', but belongs here more
