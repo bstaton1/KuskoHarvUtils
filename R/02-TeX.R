@@ -46,8 +46,9 @@ tinyCI = function(x, linebreak = TRUE) {
 #' @param replacement Replacement value.
 #' @export
 
-kable_replace = function(kable_input, pattern, replacement) {
-  kable_input_new = stringr::str_replace(as.character(kable_input), pattern = pattern, replacement = replacement)
+kable_replace = function(kable_input, pattern, replacement, replace_all = FALSE) {
+  if (replace_all) f = stringr::str_replace_all else f = stringr::str_replace
+  kable_input_new = f(as.character(kable_input), pattern = pattern, replacement = replacement)
   class(kable_input_new) = class(kable_input)
   attributes(kable_input_new) = attributes(kable_input)
   return(kable_input_new)
