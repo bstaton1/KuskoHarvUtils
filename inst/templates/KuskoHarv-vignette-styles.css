@@ -24,3 +24,15 @@ margin-left: 30px;
 div.describe {
 color: DimGray;
 }
+
+h1 {
+border-bottom: none;
+}
+
+h3 {
+border-bottom: none;
+}
+
+h4 {
+border-bottom: none;
+}
