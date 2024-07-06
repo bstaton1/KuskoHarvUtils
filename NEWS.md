@@ -1,5 +1,13 @@
 # *NEWS*
 
+# KuskoHarvUtils 0.1.4 (2024-07-05)
+
+* Fine-tuning of `get_var_name()`: "CPUE" will always be capitalized, and "Total Harvest" is now recognized as a variable.
+* Fixed bug in help file of `to_days_past_may31()`.
+* Added a `replace_all = TRUE/FALSE` argument to `kable_replace()`.
+* Cleaned/updated all Roxygen documentation.
+* Added package README
+
 # KuskoHarvUtils 0.1.3 (2024-06-26)
 
 * Added a `FUN` argument to `get_errors()`, which is used to set the function used to calculate error summaries; previously this was hard-coded to be `mean()` in the function body. Now the default is `median(error)`.

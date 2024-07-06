@@ -1,16 +1,15 @@
 Package: KuskoHarvUtils
 Type: Package
-Title: Helper Functions to Support 'KuskoHarv' Family of Packages
-Version: 0.1.3
+Title: Utility Functions to Support 'KuskoHarv' Family of Packages
+Version: 0.1.4
 Authors@R: 
     person(given = "Ben",
            family = "Staton",
            role = c("aut", "cre"),
            email = "bstaton.qes@gmail.com",
            comment = c(ORCID = "0000-0002-2342-3482"))
-Description: This package provides a variety of functions that were previously
-    distributed throughout the packages 'KuskoHarvEst', 'KuskoHarvData', and 'KuskoHarvPred'.
-    It was discovered that it would be cleaner if these utility functions were housed in a single package.
+Description: Provides supporting functions for the 'KuskoHarvEst', 'KuskoHarvData', and 'KuskoHarvPred' packages.
+    Example types of utility functions include wrappers for handling dates, basic formatting (capitalization, creating percents, print-friendly rounding), and variable lookups.
 License: use_mit_license()
 Encoding: UTF-8
 LazyData: true
@@ -18,6 +17,7 @@ Depends:
     R (>= 4.1.0)
 Imports:
     lubridate,
-    stringr (>= 1.3.1)
+    stringr (>= 1.3.1),
+    kableExtra
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
