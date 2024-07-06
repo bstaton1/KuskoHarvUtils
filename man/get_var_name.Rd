@@ -2,20 +2,23 @@
 % Please edit documentation in R/03-misc.R
 \name{get_var_name}
 \alias{get_var_name}
-\title{Obtain the 'Pretty Name' of a Variable}
+\title{Lookup the 'pretty name' of a variable}
 \usage{
 get_var_name(var, escape = FALSE, is_title = TRUE, long_species_comp = FALSE)
 }
 \arguments{
-\item{var}{The variable name. Returns \code{NA} if not a valid variable.}
+\item{var}{Character; the variable name. Must be a vector of length 1.}
 
-\item{escape}{Should percent symbols be escaped and \code{"^2"} converted to \code{"\\\\textsuperscript{2}"}? Defaults to \code{FALSE}.}
+\item{escape}{Logical; should percent symbols be escaped and \code{"^2"} converted to \code{"\\\\textsuperscript{2}"}? Defaults to \code{FALSE}.}
 
-\item{is_title}{Should title case be used? Defaults to \code{TRUE}.
+\item{is_title}{Logical; should title case be used? Defaults to \code{TRUE}.
 Either way, proper capitalization of "Chinook" and "BTF" will always be respected.}
 
-\item{long_species_comp}{Should "Percent Salmon Species Composition" be used in place of "\% Spp"?}
+\item{long_species_comp}{Logical; should "Percent SPECIES Salmon Composition" be used in place of "\% SPECIES"?}
+}
+\value{
+Character with the pretty name of the variable represented by \code{var}. Returns \code{NA} if \code{var} is not a valid variable.
 }
 \description{
-For printing axis labels, etc.
+For standardized printing of axis labels, dropdown menu options, table headers, etc.
 }

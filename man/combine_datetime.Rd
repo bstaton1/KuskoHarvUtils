@@ -7,15 +7,15 @@
 combine_datetime(dates, times, tz = "US/Alaska")
 }
 \arguments{
-\item{dates}{Character; vector with elements in \code{M/D/YYYY} format}
+\item{dates}{Character; vector with elements in \code{M/D/YYYY} format.}
 
-\item{times}{Character; vector with elements in \code{H:MM} format}
+\item{times}{Character; vector with elements in \code{H:MM} format.}
 
 \item{tz}{Character; the time zone to be assigned, supplied to \code{\link[lubridate:ymd_hms]{lubridate::mdy_hms()}} and \code{\link[lubridate:as_date]{lubridate::as_datetime()}}.
 Defaults to \code{"US/Alaska"}.}
 }
 \value{
-A vector with of class \code{datetime}.
+A vector with of class \code{"POSIXct/POSIXt"}.
 }
 \description{
 Convert date and time variables into a datetime variable

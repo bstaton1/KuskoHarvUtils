@@ -7,12 +7,16 @@
 short_datetime(datetimes, include_date = FALSE)
 }
 \arguments{
-\item{datetimes}{Object of class \code{datetime}}
+\item{datetimes}{Object of class \code{"POSIXct/POSIXt"}, can have multiple elements.}
 
-\item{include_dates}{Logical; if \code{TRUE} \code{(M/D)} will be appended to the back of the output.
-If \code{FALSE}, only the time (12-hour clock) will be returned.}
+\item{include_dates}{Logical; whether the date should be included, as well as the time.}
+}
+\value{
+Character vector of length equal to that of \code{datetimes}.
+If \code{include_dates = FALSE}, only the time will be returned (12-hr clock).
+If \code{include_dates = TRUE}, the time and the date will be returned (\code{"M/D"} format).
 }
 \description{
-Convert a \code{datetime} object to a character
+Convert a \code{"POSIXct/POSIXt"} object to a character
 class that is easier to read for humans.
 }

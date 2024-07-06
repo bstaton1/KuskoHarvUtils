@@ -7,14 +7,15 @@
 percentize(x, escape = FALSE, digits = 0)
 }
 \arguments{
-\item{x}{Numeric; vector containing values on the proportional scale to be converted to a percentage value}
+\item{x}{Numeric; vector containing values on the proportional scale to be converted to a percentage value.}
 
-\item{escape}{Logical; should the percent symbol be escaped? Aids in placing this output into LaTeX tables}
+\item{escape}{Logical; should the percent symbol be escaped? Aids in placing this output into LaTeX tables.}
 
-\item{digits}{Numeric; supplied to \code{\link[base:Round]{base::round()}}. Defaults to \code{0}.}
+\item{digits}{Numeric; supplied to \code{\link[base:Round]{base::round()}} after multiplying the proportion by 100. Defaults to \code{0}.}
 }
 \value{
 Character vector storing percentage values. If a non-zero value would be rounded to zero, \code{"<1\%"} is returned instead.
+If \code{escape = TRUE}, \code{"\\\\\%"} is returned instead of \code{"\%"}.
 }
 \description{
 Convert a proportion to a percent

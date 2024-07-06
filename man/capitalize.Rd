@@ -8,10 +8,15 @@ capitalize(x)
 }
 \arguments{
 \item{x}{Character; a vector of character strings for which the
-first character should be converted to uppercase. If not
-a character, will be coerced to one.}
+first character should be converted to uppercase.}
+}
+\value{
+Character vector with first letter of each element made uppercase.
 }
 \description{
 Applies \code{\link[base:chartr]{base::toupper()}} to the first character in each
 element of a character vector
+}
+\details{
+If not \code{x} is not a character, will be coerced to one.
 }

@@ -4,11 +4,12 @@
 
 #' Convert a proportion to a percent
 #'
-#' @param x Numeric; vector containing values on the proportional scale to be converted to a percentage value
-#' @param escape Logical; should the percent symbol be escaped? Aids in placing this output into LaTeX tables
-#' @param digits Numeric; supplied to [base::round()]. Defaults to `0`.
+#' @param x Numeric; vector containing values on the proportional scale to be converted to a percentage value.
+#' @param escape Logical; should the percent symbol be escaped? Aids in placing this output into LaTeX tables.
+#' @param digits Numeric; supplied to [base::round()] after multiplying the proportion by 100. Defaults to `0`.
 #'
 #' @return Character vector storing percentage values. If a non-zero value would be rounded to zero, `"<1%"` is returned instead.
+#'   If `escape = TRUE`, `"\\%"` is returned instead of `"%"`.
 #' @export
 
 percentize = function(x, escape = FALSE, digits = 0) {
@@ -28,8 +29,9 @@ percentize = function(x, escape = FALSE, digits = 0) {
 #'   element of a character vector
 #'
 #' @param x Character; a vector of character strings for which the
-#'   first character should be converted to uppercase. If not
-#'   a character, will be coerced to one.
+#'   first character should be converted to uppercase.
+#' @details If not `x` is not a character, will be coerced to one.
+#' @return Character vector with first letter of each element made uppercase.
 #' @export
 
 capitalize = function (x) {
@@ -41,10 +43,11 @@ capitalize = function (x) {
 
 #' Summation-informed rounding
 #'
-#' Rounds a vector such that the sum of the rounded vector equals the sum of the unrounded vector
+#' Rounds a vector such that the sum of the rounded vector equals the sum of the unrounded vector.
 #'
-#' @param x Numeric; vector to be rounded
-#' @param digits Numeric; number of decimal points to round to
+#' @param x Numeric; vector to be rounded.
+#' @param digits Numeric; number of decimal points to round to.
+#' @return Numeric, sum-informed rounded version of `x`.
 #' @references The source code for this function was copied from [this Stack Overflow answer](https://stackoverflow.com/a/35930285/3911200)
 #' @export
 
@@ -63,13 +66,13 @@ smart_round = function(x, digits = 0) {
   return(out)
 }
 
-#' Obtain Northerly Wind Speed Vector
+#' Obtain northerly wind speed vector
 #'
 #' Decomposes a directional wind speed vector into its northerly speed
 #'
-#' @param speed Numeric; wind speed associated with the angle
-#' @param angle Numeric; wind directional angle associated with the speed.
-#' @param digits Numeric; how many decimal places to round to? Passed to [base::round()] and defaults to 1
+#' @param speed Numeric; wind speed associated with `angle`.
+#' @param angle Numeric; wind directional angle associated with `speed`.
+#' @param digits Numeric; how many decimal places to round to? Passed to [base::round()] and defaults to 1.
 #' @details The `angle` represents degrees from exactly northerly wind:
 #'   * `angle = 0`: exactly northerly wind (i.e., from north to south, blowing in your face standing north)
 #'   * `angle = 45`: exactly northeasterly wind
@@ -86,13 +89,11 @@ get_Nwind = function(speed, angle, digits = 1) {
   round(speed * cos(pi * angle/180), digits = digits)
 }
 
-#' Obtain Easterly Wind Speed Vector
+#' Obtain easterly wind speed vector
 #'
 #' Decomposes a directional wind speed vector into its easterly speed
 #'
-#' @param speed Numeric; wind speed associated with the angle
-#' @param angle Numeric; wind directional angle associated with the speed.
-#' @param digits Numeric; how many decimal places to round to? Passed to [base::round()] and defaults to 1
+#' @inheritParams get_Nwind
 #' @details The `angle` represents degrees from exactly northerly wind:
 #'   * `angle = 0`: exactly northerly wind (i.e., from north to south, blowing in your face standing north)
 #'   * `angle = 45`: exactly northeasterly wind
@@ -109,7 +110,7 @@ get_Ewind = function(speed, angle, digits = 1) {
   round(speed * sin(pi * angle/180), digits = digits)
 }
 
-#' Obtain the "Period" of the Season the Record Falls In
+#' Obtain the "period" of the season the record falls in
 #'
 #' Quickly assigns a time period (three-levels) of the season
 #' based on the date
@@ -154,10 +155,13 @@ get_period = function(x) {
   return(unname(period))
 }
 
-#' @title Obtain Prediction Errors and Summaries
+#' Obtain prediction errors and summaries
 #'
-#' @param yhat Numeric vector of predicted values.
-#' @param yobs Numeric vector of observed values.
+#' Given predicted and observed vectors,
+#' calculates errors and a range of summary statistics.
+#'
+#' @param yhat Numeric; vector of predicted values.
+#' @param yobs Numeric; vector of observed values.
 #' @param FUN Function used to summarize the central tendency of errors;
 #'   defaults to [stats::median()] to minimize influence of rare large errors but [base::mean()] is another good option.
 #' @note If `yhat` and `yobs` are of unequal lengths, the function will fail with a useful error message.
@@ -199,15 +203,16 @@ get_errors = function(yhat, yobs, FUN = median) {
   )
 }
 
-#' Obtain the 'Pretty Name' of a Variable
+#' Lookup the 'pretty name' of a variable
 #'
-#' For printing axis labels, etc.
+#' For standardized printing of axis labels, dropdown menu options, table headers, etc.
 #'
-#' @param var The variable name. Returns `NA` if not a valid variable.
-#' @param escape Should percent symbols be escaped and `"^2"` converted to `"\\textsuperscript{2}"`? Defaults to `FALSE`.
-#' @param is_title Should title case be used? Defaults to `TRUE`.
+#' @param var Character; the variable name. Must be a vector of length 1.
+#' @param escape Logical; should percent symbols be escaped and `"^2"` converted to `"\\textsuperscript{2}"`? Defaults to `FALSE`.
+#' @param is_title Logical; should title case be used? Defaults to `TRUE`.
 #'     Either way, proper capitalization of "Chinook" and "BTF" will always be respected.
-#' @param long_species_comp Should "Percent Salmon Species Composition" be used in place of "% Spp"?
+#' @param long_species_comp Logical; should "Percent SPECIES Salmon Composition" be used in place of "% SPECIES"?
+#' @return Character with the pretty name of the variable represented by `var`. Returns `NA` if `var` is not a valid variable.
 #' @export
 
 get_var_name = function(var, escape = FALSE, is_title = TRUE, long_species_comp = FALSE) {
@@ -239,6 +244,7 @@ get_var_name = function(var, escape = FALSE, is_title = TRUE, long_species_comp 
                     "chinook_harv" = "Chinook Harvest",
                     "chum_harv" = "Chum Harvest",
                     "sockeye_harv" = "Sockeye Harvest",
+                    "total_harv" = "Total Harvest",
                     NA
   )
 
@@ -259,18 +265,19 @@ get_var_name = function(var, escape = FALSE, is_title = TRUE, long_species_comp 
   if (!is_title) {
     var_name = tolower(var_name) |>
       stringr::str_replace("chinook", "Chinook") |>
-      stringr::str_replace("btf", "BTF")
+      stringr::str_replace("btf", "BTF") |>
+      stringr::str_replace("cpue", "CPUE")
   }
 
   return(var_name)
 }
 
-#' Make Period Labels
+#' Make period labels
 #'
 #' Quickly obtains range of dates included in each period.
 #'
-#' @param last_day Numeric; last day to use as the end of the July period. Must be >= 31; defaults to 61 (July 31)
-#' @return Character vector with the date ranges for each period, as defined by [KuskoHarvUtils::get_period()]
+#' @param last_day Numeric; last day to use as the end of the July period. Must be >= 31; defaults to 61 (July 31).
+#' @return Character vector with the date ranges for each period, as defined by [KuskoHarvUtils::get_period()].
 #' @export
 
 make_period_labels = function(last_day = 61) {

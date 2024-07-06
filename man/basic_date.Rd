@@ -4,12 +4,15 @@
 \alias{basic_date}
 \title{Create a basic date from date time object}
 \usage{
-basic_date(datetime)
+basic_date(datetimes)
 }
 \arguments{
-\item{datetime}{Object of class \code{datetime}}
+\item{datetimes}{Object of class \code{"POSIXct/POSIXt"}, can have multiple elements.}
+}
+\value{
+Character vector of length equal to that of \code{datetimes}, but converted to format \code{"M/D/YYYY"}.
 }
 \description{
-Convert a \code{datetime} object to a character
+Convert a \code{"POSIXct/POSIXt"} object to a character
 class that is easier to read for humans.
 }

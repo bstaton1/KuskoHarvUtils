@@ -7,12 +7,15 @@
 tinyCI(x, linebreak = TRUE)
 }
 \arguments{
-\item{x}{Character; the output of \code{\link[=report]{report()}}}
+\item{x}{Character vector; the output of \code{\link[KuskoHarvEst:report]{KuskoHarvEst::report()}}, or any character string with the format \code{"est (lwrCI-uprCI)"}.}
 
-\item{linebreak}{Logical; should a linebreak be inserted between the mean portion and the CI portion?}
+\item{linebreak}{Logical; should a line break be inserted between the mean portion and the CI portion?}
+}
+\value{
+Character vector with each element correctly formatted with LaTeX code.
 }
 \description{
 Adds the appropriate LaTeX code to a summary produced by
-\code{\link[=report]{report()}} to make the CI portion smaller than the mean portion.
+\code{\link[KuskoHarvEst:report]{KuskoHarvEst::report()}} to make the CI portion smaller than the mean portion.
 This is a nice touch for tabular output.
 }

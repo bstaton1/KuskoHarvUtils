@@ -4,13 +4,15 @@
 \alias{file_date}
 \title{Create a date for use in file names}
 \usage{
-file_date(x)
+file_date(datetimes)
 }
 \arguments{
-\item{x}{and object of class \code{datetime}}
+\item{datetimes}{Object of class \code{"POSIXct/POSIXt"}, can have multiple elements.}
+}
+\value{
+Character vector of length equal to that of \code{datetimes}, but converted to format \code{"YYYY_MM_DD"}.
 }
 \description{
-Converts a \code{datetime} object to a
-character class with format \code{YYYY_MM_DD}. This format
-is useful in constructing file names.
+Converts a \code{"POSIXct/POSIXt"} object to a
+character class useful in constructing file names.
 }

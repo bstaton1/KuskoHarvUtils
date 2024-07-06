@@ -5,13 +5,13 @@
 #' Make the CI part of a summary smaller text than the mean
 #'
 #' Adds the appropriate LaTeX code to a summary produced by
-#'   [report()] to make the CI portion smaller than the mean portion.
-#'   This is a nice touch for tabular output.
+#' [KuskoHarvEst::report()] to make the CI portion smaller than the mean portion.
+#' This is a nice touch for tabular output.
 #'
-#' @param x Character; the output of [report()]
-#' @param linebreak Logical; should a linebreak be inserted between the mean portion and the CI portion?
+#' @param x Character vector; the output of [KuskoHarvEst::report()], or any character string with the format `"est (lwrCI-uprCI)"`.
+#' @param linebreak Logical; should a line break be inserted between the mean portion and the CI portion?
+#' @return Character vector with each element correctly formatted with LaTeX code.
 #' @export
-
 
 tinyCI = function(x, linebreak = TRUE) {
   # if x has CIs
@@ -36,14 +36,17 @@ tinyCI = function(x, linebreak = TRUE) {
   }
 }
 
-#' Replace Text in a kable Object
+#' Replace text in a kable Object
 #'
 #' Sometimes something needs to be altered
 #' in the TeX code after the kable object is built.
+#' This function helps with that.
 #'
-#' @param kable_input The output of a Output of a `knitr::kable() |> kableExtra::fn()` chain.
-#' @param pattern Pattern to look for -- interpreted as a regular expression. See [stringr::str_replace()].
-#' @param replacement Replacement value.
+#' @param kable_input The output of a `knitr::kable() |> kableExtra::fn()` chain.
+#' @param pattern Character; pattern to look for, passed to [stringr::str_replace()].
+#' @param replacement Character; replacement value, passed to [stringr::str_replace()].
+#' @param replace_all Logical; should [stringr::str_replace_all()] be used instead of [stringr::str_replace()]?
+#' @return Identical to `kable_input`, but with the first instance (or all instances if `replace_all = TRUE`) of `pattern` matched on each line replaced with `replacement.`
 #' @export
 
 kable_replace = function(kable_input, pattern, replacement, replace_all = FALSE) {
@@ -57,9 +60,10 @@ kable_replace = function(kable_input, pattern, replacement, replace_all = FALSE)
 #' A function to add vspace to the bottom of a kable
 #'
 #' @inheritParams kable_replace
-#' @param space Character; LaTeX units and magnitude of space to include in a vspace
+#' @param space Character; LaTeX units and magnitude of space to include in a `\vspace`
 #'   call at the bottom of the table
 #' @details This function should be called as the last step in the chain of commands.
+#' @return Identical to `kable_input`, but with `\vspace{space}` appended to the end.
 #' @export
 
 add_vspace = function(kable_input, space = "-1em") {

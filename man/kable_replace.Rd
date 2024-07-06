@@ -2,18 +2,24 @@
 % Please edit documentation in R/02-TeX.R
 \name{kable_replace}
 \alias{kable_replace}
-\title{Replace Text in a kable Object}
+\title{Replace text in a kable Object}
 \usage{
-kable_replace(kable_input, pattern, replacement)
+kable_replace(kable_input, pattern, replacement, replace_all = FALSE)
 }
 \arguments{
-\item{kable_input}{The output of a Output of a \code{knitr::kable() |> kableExtra::fn()} chain.}
+\item{kable_input}{The output of a \code{knitr::kable() |> kableExtra::fn()} chain.}
 
-\item{pattern}{Pattern to look for -- interpreted as a regular expression. See \code{\link[stringr:str_replace]{stringr::str_replace()}}.}
+\item{pattern}{Character; pattern to look for, passed to \code{\link[stringr:str_replace]{stringr::str_replace()}}.}
 
-\item{replacement}{Replacement value.}
+\item{replacement}{Character; replacement value, passed to \code{\link[stringr:str_replace]{stringr::str_replace()}}.}
+
+\item{replace_all}{Logical; should \code{\link[stringr:str_replace]{stringr::str_replace_all()}} be used instead of \code{\link[stringr:str_replace]{stringr::str_replace()}}?}
+}
+\value{
+Identical to \code{kable_input}, but with the first instance (or all instances if \code{replace_all = TRUE}) of \code{pattern} matched on each line replaced with \code{replacement.}
 }
 \description{
 Sometimes something needs to be altered
 in the TeX code after the kable object is built.
+This function helps with that.
 }

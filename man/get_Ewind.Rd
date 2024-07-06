@@ -2,7 +2,7 @@
 % Please edit documentation in R/03-misc.R
 \name{get_Ewind}
 \alias{get_Ewind}
-\title{Obtain Easterly Wind Speed Vector}
+\title{Obtain easterly wind speed vector}
 \source{
 G. Decossas provided this formula based on some previous work.
 }
@@ -10,11 +10,11 @@ G. Decossas provided this formula based on some previous work.
 get_Ewind(speed, angle, digits = 1)
 }
 \arguments{
-\item{speed}{Numeric; wind speed associated with the angle}
+\item{speed}{Numeric; wind speed associated with \code{angle}.}
 
-\item{angle}{Numeric; wind directional angle associated with the speed.}
+\item{angle}{Numeric; wind directional angle associated with \code{speed}.}
 
-\item{digits}{Numeric; how many decimal places to round to? Passed to \code{\link[base:Round]{base::round()}} and defaults to 1}
+\item{digits}{Numeric; how many decimal places to round to? Passed to \code{\link[base:Round]{base::round()}} and defaults to 1.}
 }
 \value{
 A numeric value representing the vector of easterly wind speed.

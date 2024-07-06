@@ -2,14 +2,14 @@
 % Please edit documentation in R/03-misc.R
 \name{get_errors}
 \alias{get_errors}
-\title{Obtain Prediction Errors and Summaries}
+\title{Obtain prediction errors and summaries}
 \usage{
 get_errors(yhat, yobs, FUN = median)
 }
 \arguments{
-\item{yhat}{Numeric vector of predicted values.}
+\item{yhat}{Numeric; vector of predicted values.}
 
-\item{yobs}{Numeric vector of observed values.}
+\item{yobs}{Numeric; vector of observed values.}
 
 \item{FUN}{Function used to summarize the central tendency of errors;
 defaults to \code{\link[stats:median]{stats::median()}} to minimize influence of rare large errors but \code{\link[base:mean]{base::mean()}} is another good option.}
@@ -27,7 +27,8 @@ A \code{\link[base:list]{list}} object with elements \verb{$error} (\code{yhat -
 }
 }
 \description{
-Obtain Prediction Errors and Summaries
+Given predicted and observed vectors,
+calculates errors and a range of summary statistics.
 }
 \note{
 If \code{yhat} and \code{yobs} are of unequal lengths, the function will fail with a useful error message.

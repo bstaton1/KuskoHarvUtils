@@ -7,12 +7,15 @@
 smart_round(x, digits = 0)
 }
 \arguments{
-\item{x}{Numeric; vector to be rounded}
+\item{x}{Numeric; vector to be rounded.}
 
-\item{digits}{Numeric; number of decimal points to round to}
+\item{digits}{Numeric; number of decimal points to round to.}
+}
+\value{
+Numeric, sum-informed rounded version of \code{x}.
 }
 \description{
-Rounds a vector such that the sum of the rounded vector equals the sum of the unrounded vector
+Rounds a vector such that the sum of the rounded vector equals the sum of the unrounded vector.
 }
 \references{
 The source code for this function was copied from \href{https://stackoverflow.com/a/35930285/3911200}{this Stack Overflow answer}

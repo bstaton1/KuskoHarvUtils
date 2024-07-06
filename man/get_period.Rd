@@ -2,7 +2,7 @@
 % Please edit documentation in R/03-misc.R
 \name{get_period}
 \alias{get_period}
-\title{Obtain the "Period" of the Season the Record Falls In}
+\title{Obtain the "period" of the season the record falls in}
 \usage{
 get_period(x)
 }

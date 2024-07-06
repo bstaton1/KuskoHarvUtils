@@ -2,15 +2,15 @@
 % Please edit documentation in R/03-misc.R
 \name{make_period_labels}
 \alias{make_period_labels}
-\title{Make Period Labels}
+\title{Make period labels}
 \usage{
 make_period_labels(last_day = 61)
 }
 \arguments{
-\item{last_day}{Numeric; last day to use as the end of the July period. Must be >= 31; defaults to 61 (July 31)}
+\item{last_day}{Numeric; last day to use as the end of the July period. Must be >= 31; defaults to 61 (July 31).}
 }
 \value{
-Character vector with the date ranges for each period, as defined by \code{\link[=get_period]{get_period()}}
+Character vector with the date ranges for each period, as defined by \code{\link[=get_period]{get_period()}}.
 }
 \description{
 Quickly obtains range of dates included in each period.

@@ -7,10 +7,13 @@
 add_vspace(kable_input, space = "-1em")
 }
 \arguments{
-\item{kable_input}{The output of a Output of a \code{knitr::kable() |> kableExtra::fn()} chain.}
+\item{kable_input}{The output of a \code{knitr::kable() |> kableExtra::fn()} chain.}
 
-\item{space}{Character; LaTeX units and magnitude of space to include in a vspace
+\item{space}{Character; LaTeX units and magnitude of space to include in a \verb{\\vspace}
 call at the bottom of the table}
+}
+\value{
+Identical to \code{kable_input}, but with \verb{\\vspace\{space\}} appended to the end.
 }
 \description{
 A function to add vspace to the bottom of a kable
