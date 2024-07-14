@@ -1,5 +1,16 @@
 # *NEWS*
 
+# KuskoHarvUtils 0.1.5 (2024-07-14)
+
+* Added a CSS style sheet for standardized KuskoHarv package vignettes
+* Added the map figure, allows it to be used easily from anywhere
+* Moved all axis functions from 'KuskoHarvPred' ([#9](https://github.com/bstaton1/KuskoHarvUtils/issues/9))
+  * `draw_day_axis()`
+  * `draw_percent_axis()`; also added an optional `at` argument to allow bypassing `grDevices::axisTicks()`
+  * `draw_yn_axis()`
+  * `draw_axis_line()`
+  * `choose_axis_type()`
+
 # KuskoHarvUtils 0.1.4 (2024-07-05)
 
 * Fine-tuning of `get_var_name()`: "CPUE" will always be capitalized, and "Total Harvest" is now recognized as a variable.
