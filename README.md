@@ -4,6 +4,8 @@
 
 ## Example Functions
 
+See `help(KuskoHarvUtils)` for a complete list of all functions and help files.
+
 ### Date Processing
 
 **NOTE**: _These are due for streamlining and may change. See [#3](https://github.com/bstaton1/KuskoHarvUtils/issues/3)._
@@ -25,3 +27,13 @@
 | `percentize()`    	| Converts a numeric proportion (e.g., `0.25`) to a percentage value (e.g., `"25%"`), with the ability to auto-escape (`"\\%"`) for printing in LaTeX output and to correctly display rounded values (e.g., `0.0001` will become `"<1%"` by default, rather than `"0%"`).                            	|
 | `kable_replace()` 	| Substitutes a `replacement` for a matched `pattern` in an object of class `"knitr_kable"`; useful in tweaking things not accessible through the standard `knitr::kable() \|> kableExtra::fn()` toolchain (_only for LaTeX output_).                                                	|
 | `tiny_ci()`       	| Converts cells that would be displayed as `mean (lwrCI-uprCI)` to have the interval be smaller than the mean, with option included to place a line break between them (_only for LaTeX output_).                                                                                                      	|
+
+## Plotting
+
+| Function              	| Description                                                                                                             	|
+|-----------------------	|-------------------------------------------------------------------------------------------------------------------------	|
+| `draw_day_axis()`     	| Add axis showing date labels, but for plots with user coordinates defined in terms of the number of days past May 31st. 	|
+| `draw_percent_axis()` 	| Add axis showing percent labels, but for plots with user coordinates defined in terms of the proportional scale.        	|
+| `draw_yn_axis()`      	| Add axis showing "Yes/No" labels, but for plots with user coordinates defined such that 0 = No and 1 = Yes.             	|
+| `draw_axis_line()`    	| Add axis line, necessary internal to properly handle axis colors.                                                       	|
+| `choose_axis_type()`  	| Automatically select the axis type to draw based on the name of the variable being displayed.                           	|
