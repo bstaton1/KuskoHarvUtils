@@ -4,7 +4,7 @@
 
 ## Example Functions
 
-See `help(KuskoHarvUtils)` for a complete list of all functions and help files.
+See `help(package = "KuskoHarvUtils")` for a complete list of all functions and help files.
 
 ### Date Processing
 
