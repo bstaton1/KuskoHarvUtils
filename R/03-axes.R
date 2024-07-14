@@ -1,11 +1,17 @@
-#' Draw an Axis showing Dates
+#' Draw an axis showing dates
 #'
-#' @param fday The first day (1 = June 1)
-#' @param lday The last day (1 = June 1)
-#' @param by The interval to draw axis ticks at
-#' @param side The side of the plot to draw the axis on,
-#'  1 = x-axis, 2 = y-axis
+#' Uses date labels, but for plots with user coordinates
+#' based on the number of days past May 31st.
+#'
+#' @param fday Numeric; the first day on the axis to draw (1 = June 1; see [to_days_past_may31()])
+#' @param lday Numeric; the last day (30 = June 30; see [to_days_past_may31()])
+#' @param by Numeric; interval to draw axis ticks at
+#' @param side Numeric; the side of the plot to draw the axis on;
+#'  1 = bottom, 2 = left, 3 = top, 4 = right
+#' @param col Character; color to use for the axis line, tick marks, and tick mark labels (where applicable).
+#'   Defaults to `par("col.axis")`.
 #' @param ... Optional arguments to be passed to [graphics::axis()]
+#' @export
 
 draw_day_axis = function(fday, lday, by, side = 1, col = par("col.axis"), ...) {
   at = seq(fday, lday, by = by)
@@ -17,33 +23,47 @@ draw_day_axis = function(fday, lday, by, side = 1, col = par("col.axis"), ...) {
   draw_axis_line(side = side)
 }
 
-#' Draw an Axis Showing Percentages
+#' Draw an axis showing percentages
+#'
+#' Uses percentage labels, but for plots with user coordinates
+#' based on the proportional scale.
 #'
 #' @inheritParams draw_day_axis
-#'
+#' @param at Numeric; optional vector to place tick marks and tick mark labels on the proportional scale.
+#'   Defaults to `NULL`, in which case [grDevices::axisTicks()] is used to automatically select tick mark locations.
+#' @export
 
-draw_percent_axis = function(side, col = par("col.axis"), ...) {
-  usr = par("usr")
-  if (side == 1) i = c(1,2) else i = c(3,4)
-  at = axisTicks(usr[i], log = FALSE)
+draw_percent_axis = function(side, at = NULL, col = par("col.axis"), ...) {
+
+  # if 'at' not provided, automatically determine pretty tick mark locations
+  if (is.null(at)) {
+    usr = par("usr")
+    if (side == 1) i = c(1,2) else i = c(3,4)
+    at = axisTicks(usr[i], log = FALSE)
+  }
+
+  # draw the axis
   axis(side = side, at = at, labels = paste0(at * 100, "%"), col = "white", col.ticks = col, ...)
   draw_axis_line(side = side)
 }
 
-#' Draw an Axis Showing Percentages
+#' Draw an axis showing yes/no categories
+#'
+#' Uses character labels, but for plots with user coordinates based on
+#' 0 = No, 1 = Yes.
 #'
 #' @inheritParams draw_day_axis
-#'
+#' @export
 
 draw_yn_axis = function(side, col = par("col.axis"), ...) {
   axis(side = side, at = c(0,1), labels = c("No", "Yes"), col = "white", col.ticks = col, ...)
   draw_axis_line(side = side)
 }
 
-#' Draw an Axis Line with No Ticks or Labels
+#' Draw an axis line with no ticks or labels
 #'
 #' @inheritParams draw_day_axis
-#' @param col Color, defaults to `par("col.axis")`
+#' @export
 
 draw_axis_line = function(side, col = par("col.axis")) {
   usr = par("usr")
@@ -53,7 +73,7 @@ draw_axis_line = function(side, col = par("col.axis")) {
   if (side == 4) segments(usr[2], usr[3], usr[2], usr[4], col = col, xpd = TRUE)
 }
 
-#' Auto-select the Type of Axis to Draw
+#' Auto-select the type of axis to draw
 #'
 #' For use in generalized plotting functions where
 #' the type of variable (and thus axis) needs to change
@@ -62,8 +82,9 @@ draw_axis_line = function(side, col = par("col.axis")) {
 #' @return Character vector of length 1; one of:
 #'   * `"yn"` -- if `var %in% c("fished_yesterday", "weekend")`
 #'   * `"day"` -- if `var == "day"`
-#'   * `"percent"` -- e.g., if `var %in% c("chinook_comp", "btf_chinook_comp")`
+#'   * `"percent"` -- e.g., if `var %in% c("chinook_comp", "btf_chinook_comp", "p_before_noon")`
 #'   * `"regular"` -- otherwise
+#' @export
 
 choose_axis_type = function(var) {
 
