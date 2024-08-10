@@ -57,7 +57,21 @@ draw_percent_axis = function(side, at = NULL, col = par("col.axis"), ...) {
 
 draw_yn_axis = function(side, col = par("col.axis"), ...) {
   axis(side = side, at = c(0,1), labels = c("No", "Yes"), col = "white", col.ticks = col, ...)
-  draw_axis_line(side = side)
+  draw_axis_line(side = side, col = col)
+}
+
+#' Draw a regular axis
+#'
+#' Behaves just like [graphics::axis()]
+#' except handles colors just like
+#' [draw_day_axis()], [draw_percent_axis()], and [draw_yn_axis()].
+#'
+#' @inheritParams draw_day_axis
+#' @export
+
+draw_regular_axis = function(side, col = par("col.axis"), ...) {
+  axis(side = side, col = "white", col.ticks = col, ...)
+  draw_axis_line(side = side, col = col)
 }
 
 #' Draw an axis line with no ticks or labels
