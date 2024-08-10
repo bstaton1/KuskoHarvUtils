@@ -1,5 +1,14 @@
 # *NEWS*
 
+# KuskoHarvUtils 0.1.6 (2024-07-17)
+
+A variety of axis function improvements.
+
+* Improved axis functions -- `col` argument was not working properly
+* `draw_axis_line()` now relies on `axis()` and thus now produces an undetectable result (previously the line was too thin, even when `xpd = TRUE` was used).
+* Added `draw_regular_axis()`, to enable using the same axis drawing framework, even if the labels don't need special calculations prior to drawing.
+
+
 # KuskoHarvUtils 0.1.5 (2024-07-14)
 
 * Added a CSS style sheet for standardized KuskoHarv package vignettes
