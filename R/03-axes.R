@@ -20,7 +20,7 @@ draw_day_axis = function(fday, lday, by, side = 1, col = par("col.axis"), ...) {
   day = lubridate::day(date)
   lab = paste(month, day, sep = "/")
   axis(side = side, at = at, labels = lab, col = "white", col.ticks = col, ...)
-  draw_axis_line(side = side)
+  draw_axis_line(side = side, col = col)
 }
 
 #' Draw an axis showing percentages
@@ -44,7 +44,7 @@ draw_percent_axis = function(side, at = NULL, col = par("col.axis"), ...) {
 
   # draw the axis
   axis(side = side, at = at, labels = paste0(at * 100, "%"), col = "white", col.ticks = col, ...)
-  draw_axis_line(side = side)
+  draw_axis_line(side = side, col = col)
 }
 
 #' Draw an axis showing yes/no categories
