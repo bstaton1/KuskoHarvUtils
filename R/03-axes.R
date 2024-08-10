@@ -67,10 +67,10 @@ draw_yn_axis = function(side, col = par("col.axis"), ...) {
 
 draw_axis_line = function(side, col = par("col.axis")) {
   usr = par("usr")
-  if (side == 1) segments(usr[1], usr[3], usr[2], usr[3], col = col, xpd = TRUE)
-  if (side == 2) segments(usr[1], usr[3], usr[1], usr[4], col = col, xpd = TRUE)
-  if (side == 3) segments(usr[1], usr[4], usr[2], usr[4], col = col, xpd = TRUE)
-  if (side == 4) segments(usr[2], usr[3], usr[2], usr[4], col = col, xpd = TRUE)
+  if (side == 1) axis(side = 1, at = c(usr[1], usr[2]), labels = FALSE, tcl = 0, col = col)
+  if (side == 2) axis(side = 2, at = c(usr[3], usr[4]), labels = FALSE, tcl = 0, col = col)
+  if (side == 3) axis(side = 3, at = c(usr[1], usr[2]), labels = FALSE, tcl = 0, col = col)
+  if (side == 4) axis(side = 4, at = c(usr[3], usr[4]), labels = FALSE, tcl = 0, col = col)
 }
 
 #' Auto-select the type of axis to draw
