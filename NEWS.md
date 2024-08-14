@@ -1,5 +1,10 @@
 # *NEWS*
 
+# KuskoHarvUtils 0.2.0 (2024-08-13)
+
+This version update is to serve as an easy permanent reference -- see the [v0.2.0 release](https://www.github.com/bstaton1/KuskoHarvUtils/releases/tag/v0.2.0) for more details.
+Several minor updates were made to the package README, including a new grouped package hexsticker logo. No changes in functionality from v0.1.6.
+
 # KuskoHarvUtils 0.1.6 (2024-07-17)
 
 A variety of axis function improvements.
@@ -7,7 +12,6 @@ A variety of axis function improvements.
 * Improved axis functions -- `col` argument was not working properly
 * `draw_axis_line()` now relies on `axis()` and thus now produces an undetectable result (previously the line was too thin, even when `xpd = TRUE` was used).
 * Added `draw_regular_axis()`, to enable using the same axis drawing framework, even if the labels don't need special calculations prior to drawing.
-
 
 # KuskoHarvUtils 0.1.5 (2024-07-14)
 
