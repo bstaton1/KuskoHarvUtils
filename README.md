@@ -1,6 +1,6 @@
 # KuskoHarvUtils  <img src="man/figures/sticker/KuskoHarvUtils-logo.png" align="right" height=200px/>
 
-> Provides supporting functions for the ['KuskoHarvEst'](https://www.github.com/bstaton1/KuskoHarvEst), ['KuskoHarvData'](https://www.github.com/bstaton1/KuskoHarvData), and ['KuskoHarvPred'](https://www.github.com/bstaton1/KuskoHarvPred) packages, all of which focus on different aspects of processing data collected by the Lower Kuskokwim River In-season Subsistence Salmon Harvest Monitoring Program.
+> Provides supporting functions for the 'KuskoHarv*' family of R packages, all of which focus on different aspects of processing data collected by the Lower Kuskokwim River In-season Subsistence Salmon Harvest Monitoring Program.
 
 ## Example Functions
 
@@ -28,7 +28,7 @@ See `help(package = "KuskoHarvUtils")` for a complete list of all functions and 
 | `kable_replace()` 	| Substitutes a `replacement` for a matched `pattern` in an object of class `"knitr_kable"`; useful in tweaking things not accessible through the standard `knitr::kable() \|> kableExtra::fn()` toolchain (_only for LaTeX output_).                                                	|
 | `tiny_ci()`       	| Converts cells that would be displayed as `mean (lwrCI-uprCI)` to have the interval be smaller than the mean, with option included to place a line break between them (_only for LaTeX output_).                                                                                                      	|
 
-## Plotting
+### Plotting
 
 | Function              	| Description                                                                                                             	|
 |-----------------------	|-------------------------------------------------------------------------------------------------------------------------	|
@@ -37,3 +37,22 @@ See `help(package = "KuskoHarvUtils")` for a complete list of all functions and 
 | `draw_yn_axis()`      	| Add axis showing "Yes/No" labels, but for plots with user coordinates defined such that 0 = No and 1 = Yes.             	|
 | `draw_axis_line()`    	| Add axis line, necessary internal to properly handle axis colors.                                                       	|
 | `choose_axis_type()`  	| Automatically select the axis type to draw based on the name of the variable being displayed.                           	|
+
+## Installation
+
+'KuskoHarvUtils' is a dependency of each of the other 'KuskoHarv*' packages, and will be automatically installed upon installing those.
+
+However, in the rare event that a user does wish to install 'KuskoHarvUtils' directly without these upstream packages:
+
+```R
+install.packages("remotes")
+remotes::install_github("bstaton1/KuskoHarvUtils")
+```
+
+## Related Packages <img src="man/figures/sticker/KuskoHarvUtils-logo-grouped.png" align="right" height=250px/>
+
+'KuskoHarvUtils' is a member of a family of packages:
+
+* ['KuskoHarvEst'](https://www.github.com/bstaton1/KuskoHarvEst) contains tools for producing estimates (and PDF reports for distribution) for a single opener.
+* ['KuskoHarvData'](https://www.github.com/bstaton1/KuskoHarvData) stores the data and compiled estimates across multiple openers and years.
+* ['KuskoHarvPred'](https://www.github.com/bstaton1/KuskoHarvPred) contains tools for predicting outcomes of future openers based on past data. 
