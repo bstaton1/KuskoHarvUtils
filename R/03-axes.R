@@ -114,6 +114,7 @@ choose_axis_type = function(var) {
   percent_vars = c(
     "chinook_comp", "chum_comp", "sockeye_comp",
     "chinook_btf_comp", "chum_btf_comp", "sockeye_btf_comp",
+    "chinook_sonar_comp", "chum_sonar_comp", "sockeye_sonar_comp",
     "p_before_noon"
   )
 
